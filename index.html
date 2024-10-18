@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <style>
+    body{
+      background-color: #a7a6a6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #addUserBtn{
+      width: 100px;
+      height: 40px;
+    }
+    .user-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid black;
+      border-radius: 8px;
+      min-width: 500px;
+      max-width: 500px;
+    }
+
+    #userList{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .user-info {
+      flex: 1;
+
+    }
+
+    .user-actions button {
+      margin-left: 10px;
+      padding: 5px 10px;
+    }
+
+    .modal {
+      display: block;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .form{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .editForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button{
+      color: white;
+      background-color: black;
+      border: none;
+      border-radius: 10px;
+      height: 30px;
+    }
+
+    button:hover{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="addUserBtn">Add User</button>
+  <ul id="userList"></ul>
+
+  <!-- Edit Modal-->
+  <div id="editModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditPopup()">&times;</span>
+      <h2>Edit User</h2>
+      <form id="editForm" class="form">
+        <label for="editName">Name</label>
+        <input id="editName" type="text" required />
+
+        <label for="editEmail">Email</label>
+        <input id="editEmail" type="email" required />
+
+        <label for="editImage">Profile Picture</label>
+        <input type="file" id="editImage" />
+
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Modal-->
+  <div id="addModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeAddPopup()">&times;</span>
+      <h2>Add User</h2>
+      <form id="addForm" class="form">
+        <label for="addName">Name</label>
+        <input id="addName" type="text" required />
+
+        <label for="addEmail">Email</label>
+        <input id="addEmail" type="email" required />
+
+        <label for="addImage">Profile Picture</label>
+        <input type="file" id="addImage" />
+
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+  <script src="app.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyALijogJCTf2K8SkvLQVr1FBlMXYOo_gMs",
+      authDomain: "my-frontend-56dc9.firebaseapp.com",
+      projectId: "my-frontend-56dc9",
+      storageBucket: "my-frontend-56dc9.appspot.com",
+      messagingSenderId: "594041971488",
+      appId: "1:594041971488:web:a4e9c29f00a6711563ed45",
+      measurementId: "G-7B9ZXZ5C32"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
+</html>
