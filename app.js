@@ -2,7 +2,7 @@ let users = [];
 let selectedUser = null;
 let image = null;
 
-const hosturl = "https://socket-api-ney5.onrender.com"
+const hosturl = "http://localhost:4000"
 const socket = io(hosturl);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function subscribeUserToPush() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/socket-frontend/service-worker.js')
       .then(function (registration) {
         return registration.pushManager.subscribe({
           userVisibleOnly: true,
