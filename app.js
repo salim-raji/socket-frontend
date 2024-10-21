@@ -2,7 +2,7 @@ let users = [];
 let selectedUser = null;
 let image = null;
 
-const hosturl = "http://localhost:4000"
+const hosturl = "https://socket-api-ney5.onrender.com"
 const socket = io(hosturl);
 
 document.addEventListener('DOMContentLoaded', () => {
